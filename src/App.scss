@@ -5,6 +5,31 @@ body {
     color: rgba(0,0,0,0.6);
 }
 
+.credits {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 8px;
+    color: rgba(0,0,0,0.6);
+    font-size: 0.8em;
+    p {
+        padding-top: 8px;
+    }
+    .algolia {
+        display: flex;
+        align-items: center;
+        p {
+            margin: 0;
+            padding-right: 4px;
+        }
+        img {
+            width: 80px;
+        }
+    }
+}
+
 .game-logo {
     width: 80px;
 }
@@ -45,8 +70,8 @@ body {
 
 .ais-Pagination-list {
     display: flex;
-    justify-content: space-around;
-    width: 70%;
+    justify-content: center;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -73,7 +98,8 @@ body {
 }
 
 .hit {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('https://i.fbcd.co/products/original/992edd3d1df647f439129905e5e0ba7046c22f33c39f0702bd6e881f81475cb6.jpg');
+    position: relative;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('https://i.fbcd.co/products/original/992edd3d1df647f439129905e5e0ba7046c22f33c39f0702bd6e881f81475cb6.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -82,15 +108,56 @@ body {
     margin: 24px 0;
     margin-right: 24px;
     padding: 16px 8px;
-    height: 200px;
-    // :hover {
-    //     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    // }
+    height: 240px;
+    .hit-name {
+        font-size: 2.4em;
+        text-align: center;
+    }
+    .hit-publisher {
+        font-size: 1.4em;
+        text-align: center;
+        opacity: 0.7;
+    }
+    .hit-rank {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // text-align: center;
+        position: absolute;
+        color: white;
+        top: -22px;
+        right: -22px;
+        // padding: 5px 10px;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 0, 0, 0.555);
+        border-radius: 50%;
+        p {
+            margin-bottom: 0;
+        }
+    }
+    .hit-year {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+    }
+    .hit-info {
+        font-size: 1em;
+        text-align: center;
+        opacity: 0.7;
+    }
+    .hit-sales {
+        text-align: center;
+        // position: absolute;
+        // bottom: 10px;
+        opacity: 0.7;
+        font-size: .7em;
+        
+    }
 }
 
 .sidebar {
     width: 100%;
-    // padding-left: 24px;
 }
 
 .sidebar-item {
@@ -103,7 +170,6 @@ body {
     .ais-RefinementList-showMore {
         background: transparent;
         border: 1px solid rgba(0,0,0,0.19);
-        // box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
         padding: 4px;
         border-radius: 8px;
         color: rgba(0,0,0,0.6);
@@ -111,7 +177,6 @@ body {
     .ais-Menu-showMore {
         background: transparent;
         border: 1px solid rgba(0,0,0,0.19);
-        // box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
         padding: 4px;
         border-radius: 8px;
         color: rgba(0,0,0,0.6);
@@ -134,10 +199,10 @@ body {
     }
 }
 
-
 .ais-Pagination-item {
     display: block;
-    padding: 10px 16px;
+    padding: 10px 0;
+    margin: 0 6px;
     border-radius: 8px;
     font-size: 1em;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -146,22 +211,12 @@ body {
 
 .ais-Pagination-link {
     text-decoration: none;
-    color: #013cfe;
+    color: #237AEE;
+    padding: 16px 20px;
 }
 
 .ais-Highlight-highlighted {
-    background-color: rgba(216, 91, 123, 0.3);
-}
-
-table {
-    width: 100%;
-    height: 100px;
-    // text-align: center;
-}
-
-th {
-    width: 180px;
-    // overflow-x: scroll;
+    background-color: #F37670;
 }
 
 .ais-SortBy-select {
@@ -182,4 +237,45 @@ th {
     border-radius: 8px;
     margin-bottom: 24px;
     margin-left: 24px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #bee0fc;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #237beeb0;
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #237AEE;
+    border-radius: 8px;
+}
+
+@media (max-width: 850px) {
+    .main {
+        justify-content: center;
+        .left-panel {
+            display: none;
+        }
+        .right-panel {
+            width: 90%;
+            .hit {
+                margin: 24px 0;
+            }
+        }
+        .ais-Pagination-list {
+            width: 70%;
+        }
+    }
+    .header {
+        img {
+            width: 90%;
+        }
+    }
 }

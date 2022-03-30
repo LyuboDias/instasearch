@@ -19,83 +19,38 @@ const searchClient = algoliasearch(
     `${process.env.REACT_APP_API_KEY}`
 )
 
-const tableHeads = [
-    'Name', 'Genre', 'Platform', 'Publisher', 'Rank', 'Year', 'Global Sales'
-]
-
 const Hit = ({hit}) => {
-    const attributes = [
-        hit.Rank, hit.Year, hit.Global_Sales
-    ]
 
     return (
         <div className='hit'>
-            <table>
-                <thead>
-                    <tr>
-                        {tableHeads.map((tableHead, index) => {
-                            return <th key={index}>{tableHead}</th>
-                        })}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>
-                        <Highlight attribute="Name" hit={hit} highlightPreTag />
-                        </th>
-                        
-                    {/* </tr>
-                    <tr> */}
-                        <th>
-                        <Highlight attribute="Genre" hit={hit} />
-                        </th>
-                        
-                    {/* </tr>
-                    <tr> */}
-                        <th>
-                        <Highlight attribute="Platform" hit={hit} />
-                        </th>
-                        
-                    {/* </tr>
-                    <tr> */}
-                        <th>
-                        <Highlight attribute="Publisher" hit={hit} />
-                        </th>
-                        
-                    {/* </tr> */}
-                    {/* <tr> */}
-                        {attributes.map((test, index) => {
-                            return (
-                                <th key={index}>
-                                    {test}
-                                    {/* <Highlight attribute={string} hit={hit} highlightPreTag /> */}
-                                </th>
-                            )
-                        })}
-                    </tr>
-                </tbody>
-            </table>
-            {/* <div className="hit-name">
-                Name - <Highlight attribute="Name" hit={hit} highlightPreTag />
-            </div>
-            <div className="hit-genre">
-                Genre - <Highlight attribute="Genre" hit={hit} />
-            </div>
-            <div className="hit-platform">
-                Platform - <Highlight attribute="Platform" hit={hit} />
+            <div className="hit-name">
+                <Highlight attribute="Name" hit={hit} highlightPreTag />
             </div>
             <div className="hit-publisher">
-                Publisher - <Highlight attribute="Publisher" hit={hit} />
+                <Highlight attribute="Publisher" hit={hit} />
+            </div>
+            <br/>
+            <div className="hit-info">
+                Platform - <Highlight attribute="Platform" hit={hit} /> / Genre - <Highlight attribute="Genre" hit={hit} />
+            </div>
+            <br/>
+            <br/>
+            <div className="hit-sales">
+                <p>
+                    Sales: &nbsp;
+                    EU - ${hit.EU_Sales}M &nbsp;
+                    NA - ${hit.NA_Sales}M &nbsp;
+                    JP - ${hit.JP_Sales}M &nbsp;
+                    Other - ${hit.Other_Sales}M &nbsp;
+                    Global - ${hit.Global_Sales}M
+                </p>
             </div>
             <div className="hit-rank">
-                <p>Rank - {hit.Rank}</p>
+                <p>#{hit.Rank}</p>
             </div>
             <div className="hit-year">
-                <p>Year - {hit.Year}</p>
+                <p>{hit.Year}</p>
             </div>
-            <div className="hit-global-sales">
-                <p>Global Sales - {hit.Global_Sales}</p>
-            </div> */}
             <br/>
         </div> 
     )
@@ -154,6 +109,13 @@ function App() {
                 searchClient={searchClient}
             >
                 <header className='header'>
+                    <div className='credits'>
+                        <p>Created by L.Dias</p>
+                        <div className='algolia'>
+                            <p>Powered by</p>
+                            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Algolia-logo.svg/1200px-Algolia-logo.svg.png' alt='algolia logo' />
+                        </div>
+                    </div>
                     <img src='/coder.gif' alt='logo' className='img'/>
                     <SearchBox translations={{placeholder: 'Search Games'}}  submit={false} reset={false}  />
                     <br/>
@@ -167,7 +129,7 @@ function App() {
                         <Content />
                     </div>
                 </main>
-                <Pagination showLast />
+                <Pagination showLast  showPrevious={false} showNext={false} padding={2} />
             </InstantSearch>
         </div>
     );

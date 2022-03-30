@@ -1,0 +1,40 @@
+@use "src/corners" as c;
+
+.sidebar {
+    width: 100%;
+    .sidebar-item {
+        min-height: 180px;
+        box-shadow: c.$shadow;
+        padding: 16px 8px;
+        border-radius: 8px;
+        margin: 0 24px 24px 24px;
+        color: c.$text-color;
+        .ais-RefinementList-showMore {
+            background: transparent;
+            padding: 4px;
+            @include c.border-radius();
+            color: c.$text-color;
+        }
+        .ais-Menu-showMore {
+            background: transparent;
+            padding: 4px;
+            @include c.border-radius();
+            color: c.$text-color;
+        }
+        .ais-RefinementList-checkbox {
+            margin-right: 4px;
+        }
+        .ais-SearchBox-input {
+            @include c.border-radius();
+            margin-bottom: 12px;
+        }
+        .ais-SearchBox-reset,
+        .ais-SearchBox-submit {
+            border: none;
+            background: transparent;
+        }
+        .ais-Menu-link {
+            color: c.$text-color;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+//  variables
+$text-color: rgba(0,0,0,0.6) !global;
+$shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !global;
+
+// mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin border-radius {
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.19);
+}

@@ -1,0 +1,7 @@
+@use "src/corners" as c;
+
+.hits-empty-state {
+    height: 50vh;
+    flex-direction: column;
+    @include c.flex-center();
+}

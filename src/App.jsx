@@ -12,17 +12,71 @@ import {
     Menu,
     ClearRefinements
 } from 'react-instantsearch/dom'
+import Card from 'react-bootstrap/Card'
 
 const searchClient = algoliasearch(
     `${process.env.REACT_APP_API_ID}`,
     `${process.env.REACT_APP_API_KEY}`
 )
 
+const tableHeads = [
+    'Name', 'Genre', 'Platform', 'Publisher', 'Rank', 'Year', 'Global Sales'
+]
+
 const Hit = ({hit}) => {
+    const attributes = [
+        hit.Rank, hit.Year, hit.Global_Sales
+    ]
+
     return (
         <div className='hit'>
-            <div className="hit-name">
-                Name - <Highlight attribute="Name" hit={hit} />
+            <table>
+                <thead>
+                    <tr>
+                        {tableHeads.map((tableHead, index) => {
+                            return <th key={index}>{tableHead}</th>
+                        })}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                        <Highlight attribute="Name" hit={hit} highlightPreTag />
+                        </th>
+                        
+                    {/* </tr>
+                    <tr> */}
+                        <th>
+                        <Highlight attribute="Genre" hit={hit} />
+                        </th>
+                        
+                    {/* </tr>
+                    <tr> */}
+                        <th>
+                        <Highlight attribute="Platform" hit={hit} />
+                        </th>
+                        
+                    {/* </tr>
+                    <tr> */}
+                        <th>
+                        <Highlight attribute="Publisher" hit={hit} />
+                        </th>
+                        
+                    {/* </tr> */}
+                    {/* <tr> */}
+                        {attributes.map((test, index) => {
+                            return (
+                                <th key={index}>
+                                    {test}
+                                    {/* <Highlight attribute={string} hit={hit} highlightPreTag /> */}
+                                </th>
+                            )
+                        })}
+                    </tr>
+                </tbody>
+            </table>
+            {/* <div className="hit-name">
+                Name - <Highlight attribute="Name" hit={hit} highlightPreTag />
             </div>
             <div className="hit-genre">
                 Genre - <Highlight attribute="Genre" hit={hit} />
@@ -34,19 +88,16 @@ const Hit = ({hit}) => {
                 Publisher - <Highlight attribute="Publisher" hit={hit} />
             </div>
             <div className="hit-rank">
-                {/* Rank - <Highlight attribute="Rank" hit={hit} /> */}
                 <p>Rank - {hit.Rank}</p>
             </div>
             <div className="hit-year">
-                {/* Year - <Highlight attribute="Year" hit={hit} /> */}
                 <p>Year - {hit.Year}</p>
             </div>
             <div className="hit-global-sales">
-                {/* Global Sales - <Highlight attribute="Global_Sales" hit={hit} /> */}
                 <p>Global Sales - {hit.Global_Sales}</p>
-            </div>
+            </div> */}
             <br/>
-        </div>
+        </div> 
     )
 }
 
@@ -54,14 +105,22 @@ const SideBar = () => {
     return (
         <div className='sidebar'>
             <ClearRefinements />
-            <h3>Genres</h3>
-            <RefinementList attribute='Genre' showMore limit={5} />
-            <h3>Publisher</h3>
-            <RefinementList attribute='Publisher' searchable showMore limit={5}/>
-            <h3>Platform</h3>
-            <RefinementList attribute='Platform' showMore limit={5}/>
-            <h3>Publisher</h3>
-            <Menu attribute='Publisher' showMore limit={5}/>
+            <div className='sidebar-item'>
+                <h5>Genres</h5>
+                <RefinementList attribute='Genre' showMore limit={5} />
+            </div>
+            <div className='sidebar-item'>
+                <h5>Publisher</h5>
+                <RefinementList attribute='Publisher' searchable showMore limit={5}/>
+            </div>
+            <div className='sidebar-item'>
+                <h5>Platform</h5>
+                <RefinementList attribute='Platform' showMore limit={5}/>
+            </div>
+            <div className='sidebar-item'>
+                <h5>Publisher</h5>
+                <Menu attribute='Publisher' showMore limit={5}/>
+            </div>
         </div>
     )
 }
@@ -70,7 +129,6 @@ const Content = () => {
     return (
         <>
             <div className='info'>
-                
                 {/* SortBy is not working as I cant create replica of the index (dont have enough free space :/ ) */}
                 <SortBy 
                     defaultRefinement="dev_GAMES"
@@ -97,7 +155,7 @@ function App() {
             >
                 <header className='header'>
                     <img src='/coder.gif' alt='logo' className='img'/>
-                    <SearchBox translations={{placeholder: 'Search for Games'}} />
+                    <SearchBox translations={{placeholder: 'Search Games'}}  submit={false} reset={false}  />
                     <br/>
                     <Stats />
                 </header>

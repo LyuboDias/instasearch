@@ -117,6 +117,10 @@ h2 {
     padding: 16px 20px;
 }
 
+.ais-Pagination-link--selected {
+    color: #F37670;
+}
+
 .ais-Highlight-highlighted {
     background-color: #F37670;
 }
@@ -124,7 +128,8 @@ h2 {
 .ais-SortBy-select {
     background: transparent;
     border: transparent;
-    box-shadow: c.$shadow;
+    // box-shadow: c.$shadow;
+    @include c.border-radius();
     padding: 8px 4px;
     border-radius: 8px;
     color: c.$text-color;
@@ -134,7 +139,7 @@ h2 {
 .ais-ClearRefinements-button--disabled {
     background: transparent;
     border: transparent;
-    box-shadow: c.$shadow;
+    @include c.border-radius();
     padding: 4px;
     border-radius: 8px;
     margin-bottom: 24px;

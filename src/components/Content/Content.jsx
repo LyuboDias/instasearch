@@ -43,6 +43,7 @@ const Hit = ({hit}) => {
                 <p>#{Rank}</p>
             </div>
             <div className="hit-year">
+                <span className='muted'>Released</span>
                 <p>{Year}</p>
             </div>
             <br/>

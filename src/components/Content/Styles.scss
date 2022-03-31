@@ -11,7 +11,7 @@
     margin: 24px 0;
     margin-right: 24px;
     padding: 16px 8px;
-    height: 240px;
+    height: 260px;
     .hit-name {
         font-size: 2.4em;
         text-align: center;
@@ -39,6 +39,10 @@
         position: absolute;
         top: 10px;
         left: 10px;
+    }
+    .muted {
+        color: c.$text-color;
+        font-size: 0.6em;
     }
     .hit-info {
         font-size: 1em;
